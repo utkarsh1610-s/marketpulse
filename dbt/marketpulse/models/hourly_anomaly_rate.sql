@@ -8,5 +8,6 @@ select
     count(*) as anomaly_count,
     round(avg(confidence), 4) as avg_confidence
 from {{ source('marketpulse_gold', 'anomalies') }}
+where ticker is not null and signal_type is not null
 group by 1, 2, 3, 4
 order by 1 desc, 2, 5 desc
