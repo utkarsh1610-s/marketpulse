@@ -2,9 +2,12 @@ import streamlit as st
 from google.cloud import bigquery
 import pandas as pd
 import os
+import json
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./certs/marketpulse-494919-98defaa69bff.json"
 
+gcp_creds = json.loads(st.secrets["gcp_credentials"])
+credentials = bigquery.Client.from_service_account_info(gcp_creds)
+client = credentials
 PROJECT_ID = "marketpulse-494919"
 DATASET    = "marketpulse_gold"
 
