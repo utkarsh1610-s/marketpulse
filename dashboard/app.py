@@ -3,13 +3,14 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 import pandas as pd
 import os
+import json
 
 PROJECT_ID = "marketpulse-494919"
 DATASET    = "marketpulse_gold"
 
 # Load credentials from Streamlit secrets
 credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_credentials"]
+    json.loads(st.secrets["gcp_service_account"])
 )
 client = bigquery.Client(project=PROJECT_ID, credentials=credentials)
 
