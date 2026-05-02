@@ -1,17 +1,17 @@
 import streamlit as st
 from google.cloud import bigquery
+from google.oauth2 import service_account
 import pandas as pd
 import os
-import json
 
-
-gcp_creds = json.loads(st.secrets["gcp_credentials"])
-credentials = bigquery.Client.from_service_account_info(gcp_creds)
-client = credentials
 PROJECT_ID = "marketpulse-494919"
 DATASET    = "marketpulse_gold"
 
-client = bigquery.Client(project=PROJECT_ID)
+# Load credentials from Streamlit secrets
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_credentials"]
+)
+client = bigquery.Client(project=PROJECT_ID, credentials=credentials)
 
 st.set_page_config(
     page_title="MarketPulse — Anomaly Monitor",
