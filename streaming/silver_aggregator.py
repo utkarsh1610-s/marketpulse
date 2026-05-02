@@ -49,6 +49,7 @@ raw_df = spark.readStream \
     .option("kafka.bootstrap.servers", BOOTSTRAP_SERVER) \
     .option("subscribe", "raw_trades") \
     .option("startingOffsets", "latest") \
+    .option("failOnDataLoss", "false") \
     .option("kafka.security.protocol", "SSL") \
     .option("kafka.ssl.truststore.type", "PEM") \
     .option("kafka.ssl.keystore.type", "PEM") \

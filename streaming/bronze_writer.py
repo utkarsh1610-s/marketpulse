@@ -11,7 +11,7 @@ SSL_KEY = "/opt/certs/service.key"
 GCP_CREDS = "/opt/certs/marketpulse-494919-98defaa69bff.json"
 
 BRONZE_PATH = f"gs://{GCS_BUCKET}/bronze/trades"
-CHECKPOINT_PATH = f"gs://{GCS_BUCKET}/checkpoints/bronze_trades"
+CHECKPOINT_PATH = f"gs://{GCS_BUCKET}/checkpoints/bronze_trades_v2"
 
 trade_schema = StructType([
     StructField("ticker", StringType()),
@@ -39,6 +39,7 @@ raw_df = spark.readStream \
     .option("kafka.bootstrap.servers", BOOTSTRAP_SERVER) \
     .option("subscribe", "raw_trades") \
     .option("startingOffsets", "earliest") \
+    .option("failOnDataLoss", "false") \
     .option("kafka.security.protocol", "SSL") \
     .option("kafka.ssl.truststore.type", "PEM") \
     .option("kafka.ssl.keystore.type", "PEM") \
