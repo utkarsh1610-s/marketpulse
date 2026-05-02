@@ -1,0 +1,21 @@
+# Credentials — never commit these
+certs/
+.env
+*.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# dbt
+dbt/marketpulse/target/
+dbt/marketpulse/dbt_packages/
+dbt/marketpulse/logs/
+
+# Spark
+jars/
+
+# OS
+.DS_Store

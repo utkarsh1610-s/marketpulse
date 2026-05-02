@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: marketpulse_gold
+    database: marketpulse-494919
+    schema: marketpulse_gold
+    tables:
+      - name: anomalies
+        description: "Gold layer anomaly events detected by Spark"
+        freshness:
+          warn_after: {count: 4, period: hour}
+        loaded_at_field: detected_at

@@ -1,0 +1,18 @@
+services:
+  spark:
+    image: public.ecr.aws/bitnami/spark:3.5
+    user: root
+    environment:
+      - SPARK_MODE=master
+      - HOME=/root
+      - USER=root
+      - SPARK_DRIVER_MEMORY=2g
+      - SPARK_EXECUTOR_MEMORY=2g
+    volumes:
+      - ./streaming:/opt/streaming
+      - ./producers:/opt/producers
+      - ./certs:/opt/certs
+      - ./jars:/opt/jars
+    ports:
+      - "4040:4040"
+    command: sleep infinity

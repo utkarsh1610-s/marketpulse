@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: daily_anomaly_summary
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: signal_type
+        tests:
+          - not_null
+      - name: anomaly_count
+        tests:
+          - not_null
+
+  - name: ticker_health
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+          - unique
+      - name: last_seen
+        tests:
+          - not_null
+
+  - name: hourly_anomaly_rate
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: anomaly_count
+        tests:
+          - not_null
