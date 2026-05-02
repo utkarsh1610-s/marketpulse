@@ -59,7 +59,7 @@ with tab1:
             }
             return colors.get(val, "")
 
-        styled = df.style.applymap(color_signal, subset=["signal_type"])
+        styled = df.style.map(color_signal, subset=["signal_type"])
         st.dataframe(styled, use_container_width=True, hide_index=True)
 
         col1, col2, col3 = st.columns(3)
